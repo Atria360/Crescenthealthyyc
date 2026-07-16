@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
-import { MessageCircle } from "lucide-react";
+import { MessageCircle, Plus } from "lucide-react";
 import { scrollToId, scrollToTop } from "@/lib/scroll";
 
 const links = [
@@ -37,15 +37,19 @@ export const Navbar = ({ content, onOpenForm }) => {
         <button
           onClick={scrollToTop}
           data-testid="nav-logo"
-          className="flex items-center gap-3 group"
+          className="group flex items-center gap-3"
         >
-          <span className="flex items-center gap-[3px]">
-            <span className="h-2.5 w-2.5 rounded-full bg-[#D31245]" />
-            <span className="h-2.5 w-2.5 rounded-full bg-[#1FA48A] -ml-1" />
-            <span className="h-2.5 w-2.5 rounded-full bg-[#9BB8A5] -ml-1" />
+          <span className="relative flex h-9 w-9 items-center justify-center overflow-hidden rounded-xl bg-gradient-to-br from-[#D31245] via-[#1FA48A] to-[#9BB8A5] shadow-[0_4px_14px_rgba(31,164,138,0.35)] transition-transform duration-300 group-hover:scale-105">
+            <Plus className="h-5 w-5 text-white" strokeWidth={2.75} />
+            <span className="absolute inset-0 rounded-xl ring-1 ring-inset ring-white/25" />
           </span>
-          <span className="font-heading text-lg font-semibold tracking-tight text-navy-900">
-            {content.brandName}
+          <span className="flex flex-col leading-none">
+            <span className="font-heading text-[17px] font-semibold tracking-tight text-navy-900">
+              {content.brandName}
+            </span>
+            <span className="mt-[3px] text-[9px] font-semibold uppercase tracking-[0.2em] text-navy-400">
+              Calgary Health Family
+            </span>
           </span>
         </button>
 
