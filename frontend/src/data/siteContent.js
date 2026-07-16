@@ -185,7 +185,7 @@ export const siteContent = {
   testimonials: [
     {
       brandKey: "pharmasave",
-      brandName: "Pharmasave Dominion Drugs",
+      brandName: "Pharmasave",
       stars: 5,
       text: "The team went above and beyond to transfer all my prescriptions and set up blister packs for my mom. Genuinely caring service.",
       name: "Sarah M.",
