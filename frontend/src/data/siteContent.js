@@ -88,7 +88,6 @@ export const siteContent = {
         "Blister Packs",
         "Medication Reviews",
         "Vaccinations & Flu Shots",
-        "Canada Post Services",
         "Front Store Essentials",
       ],
       extras: [
@@ -101,7 +100,7 @@ export const siteContent = {
     {
       key: "crescent",
       name: "Crescent Medical Centre",
-      short: "Crescent Medical",
+      short: "Crescent Medical Centre",
       logo: LOGOS.crescent,
       accent: "#1B4F9C",
       accent2: "#1FA48A",
@@ -111,7 +110,7 @@ export const siteContent = {
       imageAlt: "Bright modern medical clinic reception in blue and teal tones",
       oneLiner:
         "Family physicians providing comprehensive, compassionate care in downtown Calgary.",
-      badges: ["Accepting New Patients", "By Appointment"],
+      badges: ["Accepting New Patients", "Walk-Ins Welcome"],
       hours: [
         "Mon–Fri · 8:30 AM – 5:00 PM",
         "Sat · By Appointment",
@@ -275,3 +274,4 @@ export const siteContent = {
 
 export const mapUrl = (address) =>
   `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(address)}`;
+query=${encodeURIComponent(address)}`;
