@@ -1,0 +1,49 @@
+{
+  "summary": "Targeted re-test of two bug fixes on Calgary Healthcare Hub. Both bug fixes verified. Light regression also passes. No console/page errors observed.",
+  "backend_issues": {"critical": [], "minor": []},
+  "frontend_issues": {
+    "ui_bugs": [],
+    "integration_issues": [],
+    "design_issues": []
+  },
+  "verification": {
+    "bug_fix_1_normal_motion": {
+      "h1_spans": [
+        {"text": "Complete Care", "opacity": "1", "transform": "none"},
+        {"text": "Under One Family", "opacity": "1", "transform": "none"}
+      ],
+      "hero_pickers_all_opacity_1": true,
+      "brand_cards_all_visible_opacity_~1": true
+    },
+    "bug_fix_1_reduced_motion": {
+      "h1_visible_opacity_1_transform_none": true,
+      "subheadline_visible_opacity_1": true,
+      "hero_pickers_all_opacity_1_transform_none": true,
+      "brand_cards_visible_opacity_~1_transform_~none": true,
+      "note": "Reduced-motion emulated via context reduced_motion='reduce'; all load content ends fully visible."
+    },
+    "bug_fix_2_about_sequence": {
+      "about-chapter-01": "See",
+      "about-chapter-02": "Fill",
+      "about-chapter-03": "Recover",
+      "matches_expected_order": true
+    },
+    "regression": {
+      "faq_item_0_expands": true,
+      "location_map_present": true,
+      "message_pill_opens_sheet_with_form_fields": true,
+      "console_or_page_errors": "none"
+    }
+  },
+  "test_report_links": [],
+  "action_items": [],
+  "critical_code_review_comments": [
+    "No blocking issues. Hero.jsx correctly gates only cursor glow / mousemove on useReducedMotion, entrance variants always play. AboutFamily chapters render in siteContent.about.chapters order which is now See -> Fill -> Recover."
+  ],
+  "updated_files": [],
+  "success_rate": {"backend": "n/a", "frontend": "100%"},
+  "seed_data_creation": "none",
+  "retest_needed": false,
+  "should_main_agent_self_test": true,
+  "context_for_next_testing_agent": "Both fixes validated in iteration_3. Normal + reduced-motion hero/pickers/brand cards all reach opacity 1. About order: See/Fill/Recover. Regression flows (FAQ, map, message sheet) intact. No console errors."
+}

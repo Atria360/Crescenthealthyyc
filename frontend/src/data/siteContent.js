@@ -215,17 +215,17 @@ export const siteContent = {
     chapters: [
       {
         no: "01",
-        verb: "Fill",
-        brand: "Pharmacy",
-        text: "Prescriptions, transfers, blister packs and a full Canada Post outlet — everyday health, handled.",
-        color: "#D31245",
-      },
-      {
-        no: "02",
         verb: "See",
         brand: "Clinic",
         text: "Family physicians offering comprehensive, compassionate care right in downtown Calgary.",
         color: "#1FA48A",
+      },
+      {
+        no: "02",
+        verb: "Fill",
+        brand: "Pharmacy",
+        text: "Prescriptions, transfers, blister packs and everyday health essentials — all handled.",
+        color: "#D31245",
       },
       {
         no: "03",
