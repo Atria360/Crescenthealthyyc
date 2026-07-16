@@ -31,7 +31,7 @@ export const siteContent = {
 
   hero: {
     eyebrow: "Pharmacy · Medical Clinic · Physiotherapy",
-    titleLines: ["Complete Care", "Under One Family"],
+    titleLines: ["Complete Care", "Under One Roof"],
     subheadline:
       "Pharmacy · Medical Clinic · Physiotherapy — proudly serving Calgary.",
     heroImage: IMAGES.hero,
@@ -263,7 +263,7 @@ export const siteContent = {
     },
   ],
 
-  marquee: ["Complete Care", "Under One Family", "Calgary · Alberta"],
+  marquee: ["Complete Care", "Under One Roof", "Calgary · Alberta"],
 
   footer: {
     tagline: "Independently owned and operated in Calgary, Alberta.",
