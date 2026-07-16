@@ -11,6 +11,8 @@ export const Footer = ({ content }) => {
             <a
               key={brand.key}
               href={brand.website}
+              target="_blank"
+              rel="noopener noreferrer"
               data-testid={`footer-logo-${brand.key}`}
               className={`flex flex-1 transition-opacity duration-300 hover:opacity-70 ${
                 i === 0

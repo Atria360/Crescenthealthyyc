@@ -181,6 +181,8 @@ export const BrandCard = ({ brand, isHighlighted }) => {
 
                 <a
                   href={brand.website}
+                  target="_blank"
+                  rel="noopener noreferrer"
                   data-testid={`brand-website-${brand.key}`}
                   className="inline-flex items-center gap-1.5 text-sm font-semibold"
                   style={{ color: a }}
