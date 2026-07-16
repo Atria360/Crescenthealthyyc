@@ -4,7 +4,7 @@ export const Footer = ({ content }) => {
   const { brands, footer } = content;
   return (
     <footer className="bg-[#F0EFEA]">
-      <GradientDivider />
+      <GradientDivider animated />
       <div className="container-x py-16">
         <div className="flex flex-col items-start gap-10 md:flex-row md:items-center md:justify-between">
           <div className="grid grid-cols-1 items-center gap-8 sm:grid-cols-3 sm:gap-12">

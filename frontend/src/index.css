@@ -102,3 +102,42 @@ html.lenis body {
     animation: none;
   }
 }
+
+/* Animated gradient (dividers / accents) */
+@keyframes gradient-shift {
+  0% {
+    background-position: 0% 50%;
+  }
+  100% {
+    background-position: 200% 50%;
+  }
+}
+.gradient-animated {
+  background-size: 200% 100%;
+  animation: gradient-shift 5s linear infinite;
+}
+
+/* Accessibility: visible focus ring for keyboard users */
+a:focus-visible,
+button:focus-visible,
+[role="button"]:focus-visible,
+input:focus-visible,
+textarea:focus-visible,
+select:focus-visible,
+[tabindex]:focus-visible,
+iframe:focus-visible {
+  outline: 2px solid #0a1128;
+  outline-offset: 2px;
+  border-radius: 6px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .gradient-animated {
+    animation: none;
+  }
+  *,
+  *::before,
+  *::after {
+    scroll-behavior: auto !important;
+  }
+}

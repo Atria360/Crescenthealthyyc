@@ -1,4 +1,11 @@
-import { motion, useScroll, useTransform } from "framer-motion";
+import {
+  motion,
+  useScroll,
+  useTransform,
+  useMotionValue,
+  useSpring,
+  useReducedMotion,
+} from "framer-motion";
 import { Pill, Stethoscope, Activity, ArrowRight, ArrowDown } from "lucide-react";
 import { brandColors } from "@/data/siteContent";
 
@@ -18,15 +25,28 @@ const fadeUp = {
 };
 
 export const Hero = ({ content, onPick }) => {
+  const reduce = useReducedMotion();
   const { scrollY } = useScroll();
   const yBg = useTransform(scrollY, [0, 900], [0, 140]);
   const scaleBg = useTransform(scrollY, [0, 900], [1, 1.15]);
   const yContent = useTransform(scrollY, [0, 700], [0, 90]);
   const fade = useTransform(scrollY, [0, 620], [1, 0]);
 
+  const mx = useMotionValue(-500);
+  const my = useMotionValue(-500);
+  const glowX = useSpring(mx, { stiffness: 120, damping: 30, mass: 0.5 });
+  const glowY = useSpring(my, { stiffness: 120, damping: 30, mass: 0.5 });
+
+  const handleMove = (e) => {
+    const rect = e.currentTarget.getBoundingClientRect();
+    mx.set(e.clientX - rect.left);
+    my.set(e.clientY - rect.top);
+  };
+
   return (
     <section
       id="top"
+      onMouseMove={reduce ? undefined : handleMove}
       className="relative flex min-h-[100svh] flex-col justify-center overflow-hidden"
     >
       <motion.div style={{ y: yBg, scale: scaleBg }} className="absolute inset-0 z-0">
@@ -39,6 +59,20 @@ export const Hero = ({ content, onPick }) => {
         <div className="absolute inset-0 bg-canvas/45" />
         <div className="absolute inset-0 bg-gradient-to-b from-canvas/40 via-transparent to-canvas" />
       </motion.div>
+
+      {!reduce && (
+        <motion.div
+          aria-hidden
+          className="pointer-events-none absolute z-[1] hidden h-[460px] w-[460px] -translate-x-1/2 -translate-y-1/2 rounded-full md:block"
+          style={{
+            left: glowX,
+            top: glowY,
+            background:
+              "radial-gradient(circle, rgba(211,18,69,0.16), rgba(31,164,138,0.12) 42%, rgba(155,184,165,0.08) 60%, transparent 72%)",
+            filter: "blur(28px)",
+          }}
+        />
+      )}
 
       <motion.div
         style={{ y: yContent, opacity: fade }}

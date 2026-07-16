@@ -1,6 +1,11 @@
 import { motion } from "framer-motion";
 import { BrandCard } from "@/components/BrandCard";
 
+const gridContainer = {
+  hidden: {},
+  show: { transition: { staggerChildren: 0.16, delayChildren: 0.08 } },
+};
+
 export const BrandCards = ({ brands, highlight }) => {
   return (
     <section id="brands" className="relative scroll-mt-24 py-24 md:py-32">
@@ -20,7 +25,13 @@ export const BrandCards = ({ brands, highlight }) => {
           </h2>
         </motion.div>
 
-        <div className="grid grid-cols-1 gap-7 md:grid-cols-3 md:gap-8">
+        <motion.div
+          variants={gridContainer}
+          initial="hidden"
+          whileInView="show"
+          viewport={{ once: true, margin: "-80px" }}
+          className="grid grid-cols-1 gap-7 md:grid-cols-3 md:gap-8"
+        >
           {brands.map((brand) => (
             <BrandCard
               key={brand.key}
@@ -28,7 +39,7 @@ export const BrandCards = ({ brands, highlight }) => {
               isHighlighted={highlight === brand.key}
             />
           ))}
-        </div>
+        </motion.div>
       </div>
     </section>
   );

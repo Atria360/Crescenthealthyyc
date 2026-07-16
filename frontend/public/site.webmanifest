@@ -1,0 +1,17 @@
+{
+  "name": "Complete Care — Calgary Health Family",
+  "short_name": "Complete Care",
+  "description": "Pharmacy, medical clinic and physiotherapy under one family in downtown Calgary.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#F7F6F2",
+  "theme_color": "#0A1128",
+  "icons": [
+    {
+      "src": "/favicon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ]
+}

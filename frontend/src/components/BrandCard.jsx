@@ -9,6 +9,15 @@ import {
   ArrowUpRight,
 } from "lucide-react";
 
+const cardVariant = {
+  hidden: { opacity: 0, y: 60 },
+  show: {
+    opacity: 1,
+    y: 0,
+    transition: { type: "spring", stiffness: 80, damping: 20 },
+  },
+};
+
 export const BrandCard = ({ brand, isHighlighted }) => {
   const [open, setOpen] = useState(false);
   const a = brand.accent;
@@ -17,10 +26,8 @@ export const BrandCard = ({ brand, isHighlighted }) => {
     <motion.article
       id={`brand-${brand.key}`}
       data-testid={`brand-card-${brand.key}`}
-      initial={{ opacity: 0, y: 48 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true, margin: "-60px" }}
-      transition={{ type: "spring", stiffness: 80, damping: 20 }}
+      variants={cardVariant}
+      whileHover={{ y: -6 }}
       className="group relative flex flex-col overflow-hidden rounded-[1.75rem] border border-black/5 bg-white"
       style={{
         boxShadow: isHighlighted
@@ -41,7 +48,21 @@ export const BrandCard = ({ brand, isHighlighted }) => {
             background: `linear-gradient(to top, ${a}26, transparent 55%)`,
           }}
         />
-        <div className="absolute right-4 top-4 flex flex-wrap justify-end gap-2">
+        {/* Spotlight on hover */}
+        <span
+          aria-hidden
+          className="pointer-events-none absolute inset-0 opacity-0 transition-opacity duration-500 group-hover:opacity-100"
+          style={{
+            background:
+              "radial-gradient(circle at 50% 38%, rgba(255,255,255,0.28), transparent 62%)",
+          }}
+        />
+        {/* Clipped inner frame on hover */}
+        <span
+          aria-hidden
+          className="pointer-events-none absolute inset-3 rounded-[1.15rem] border border-white/55 opacity-0 transition-opacity duration-500 group-hover:opacity-100"
+        />
+        <div className="absolute right-4 top-4 z-10 flex flex-wrap justify-end gap-2">
           {brand.badges.map((b) => (
             <span
               key={b}
@@ -149,10 +170,7 @@ export const BrandCard = ({ brand, isHighlighted }) => {
                     className="rounded-2xl p-4"
                     style={{ backgroundColor: brand.surface }}
                   >
-                    <p
-                      className="text-sm font-semibold"
-                      style={{ color: a }}
-                    >
+                    <p className="text-sm font-semibold" style={{ color: a }}>
                       {ex.title}
                     </p>
                     <p className="mt-1 text-sm leading-relaxed text-navy-700">

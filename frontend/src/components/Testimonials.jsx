@@ -29,7 +29,7 @@ export const Testimonials = ({ items }) => {
   return (
     <section id="testimonials" className="relative scroll-mt-24 overflow-hidden py-24 md:py-32">
       <div className="container-x">
-        <p className="eyebrow mb-12 text-center">02 — In their words</p>
+        <p className="eyebrow mb-12 text-center">03 — In their words</p>
 
         <div className="relative mx-auto min-h-[280px] max-w-4xl">
           <AnimatePresence mode="wait" custom={dir}>

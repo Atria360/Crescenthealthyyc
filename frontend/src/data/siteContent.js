@@ -237,6 +237,33 @@ export const siteContent = {
     ],
   },
 
+  faq: [
+    {
+      q: "Do you accept walk-ins?",
+      a: "Crescent Medical Centre runs primarily by appointment — please call ahead or book online so we can reserve time for you. Pharmasave and The Physio Studio welcome you to drop in during opening hours.",
+    },
+    {
+      q: "How do I transfer my prescriptions?",
+      a: "It takes just a few minutes. Bring your current prescription bottle to Pharmasave or give us a call, and we'll move your prescriptions over from your previous pharmacy for you.",
+    },
+    {
+      q: "Do you offer direct billing for physiotherapy?",
+      a: "Yes — The Physio Studio direct-bills most major insurers, including Alberta Blue Cross. Bring your insurance details to your visit and we'll take care of the paperwork.",
+    },
+    {
+      q: "What should I bring to my first visit?",
+      a: "For the medical clinic, please bring your Alberta Health Care card. For physiotherapy, your initial assessment takes 45–60 minutes and includes a personalized treatment plan — wear comfortable clothing.",
+    },
+    {
+      q: "Where are you located and is there parking?",
+      a: "All three practices share one downtown address: 150-909 5 Avenue SW, Calgary, AB. See the map above for directions and nearby parking options.",
+    },
+    {
+      q: "Do you deliver prescriptions?",
+      a: "Yes — Pharmasave offers free local prescription delivery. Just ask our team or request delivery when you refill online.",
+    },
+  ],
+
   marquee: ["Complete Care", "Under One Family", "Calgary · Alberta"],
 
   footer: {
