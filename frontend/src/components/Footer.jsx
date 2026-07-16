@@ -6,23 +6,27 @@ export const Footer = ({ content }) => {
     <footer className="bg-[#F0EFEA]">
       <GradientDivider animated />
       <div className="container-x py-16">
-        <div className="flex flex-col items-start gap-10 md:flex-row md:items-center md:justify-between">
-          <div className="grid grid-cols-1 items-center gap-8 sm:grid-cols-3 sm:gap-12">
-            {brands.map((brand) => (
-              <a
-                key={brand.key}
-                href={brand.website}
-                data-testid={`footer-logo-${brand.key}`}
-                className="transition-opacity duration-300 hover:opacity-70"
-              >
-                <img
-                  src={brand.logo}
-                  alt={brand.name}
-                  className="h-9 w-auto max-w-[180px] object-contain"
-                />
-              </a>
-            ))}
-          </div>
+        <div className="flex w-full flex-col items-center justify-between gap-10 sm:flex-row">
+          {brands.map((brand, i) => (
+            <a
+              key={brand.key}
+              href={brand.website}
+              data-testid={`footer-logo-${brand.key}`}
+              className={`flex flex-1 transition-opacity duration-300 hover:opacity-70 ${
+                i === 0
+                  ? "justify-center sm:justify-start"
+                  : i === brands.length - 1
+                    ? "justify-center sm:justify-end"
+                    : "justify-center"
+              }`}
+            >
+              <img
+                src={brand.logo}
+                alt={brand.name}
+                className="h-12 w-auto max-w-[230px] object-contain md:h-14"
+              />
+            </a>
+          ))}
         </div>
 
         <div className="mt-14 flex flex-col gap-4 border-t border-black/10 pt-8 text-sm text-navy-500 md:flex-row md:items-center md:justify-between">

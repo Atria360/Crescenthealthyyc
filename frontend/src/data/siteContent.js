@@ -239,7 +239,7 @@ export const siteContent = {
   faq: [
     {
       q: "Do you accept walk-ins?",
-      a: "Crescent Medical Centre runs primarily by appointment — please call ahead or book online so we can reserve time for you. Pharmasave and The Physio Studio welcome you to drop in during opening hours.",
+      a: "Yes — Crescent Medical Centre welcomes walk-ins during opening hours, and you're also welcome to call ahead or book online to reserve a time. Pharmasave and The Physio Studio are happy to see you any time during business hours too.",
     },
     {
       q: "How do I transfer my prescriptions?",
@@ -274,4 +274,3 @@ export const siteContent = {
 
 export const mapUrl = (address) =>
   `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(address)}`;
-query=${encodeURIComponent(address)}`;
