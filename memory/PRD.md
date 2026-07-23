@@ -20,9 +20,14 @@ Emergent). Design first, database later.
 
 ## Architecture
 - Frontend: React 19 (CRA/craco), TailwindCSS, framer-motion, Lenis, shadcn/ui, sonner.
+- **Multi-page** app via react-router-dom. Routes: `/` (Home), `/practice/:key` (BrandPage),
+  `/blog` (BlogIndex), `/blog/:slug` (BlogPost). Shared chrome in `components/Layout.jsx`
+  (Navbar, Footer, MessageForm slide-over, StickyMobileBar) via `<Outlet context={{openForm}}>`.
 - Fonts: Cabinet Grotesk (headings), Manrope (body), Playfair Display (accents).
 - Backend: FastAPI, `/api` prefix. Interim messages store in MongoDB (to migrate to Supabase).
-- Content model: `/app/frontend/src/data/siteContent.js` (will be CMS-driven in Phase 2).
+- Content model: `/app/frontend/src/data/siteContent.js` (brands/hero/faq/testimonials/about),
+  `data/brandContent.js` (per-brand intro/services/faq for brand pages), `data/blog.js`
+  (5 articles). All will be CMS-driven in Phase 2.
 
 ## User Personas
 - Calgary resident needing a prescription, doctor, or physio — wants the right practice fast.
@@ -34,6 +39,20 @@ Emergent). Design first, database later.
 - Interactive picker → scroll + highlight; per-brand cards with expanders; contact + reviews.
 - Floating contact form (no PHI) with brand dropdown; sticky mobile bar.
 - Premium, purposeful motion throughout.
+
+## Implemented (2026-06 — multi-page refactor)
+- ✅ Converted single page → multi-page with react-router-dom (App.js + Layout with Outlet).
+- ✅ Home hero = 3 vertical brand panels (crescent left, pharmasave middle, physio right) with
+  logos, badges, hours, address, Book/primary + Call + "More info" links; "Complete Care /
+  Under One Roof" headline pushed below the panels.
+- ✅ Dedicated brand pages `/practice/:key`: brand-colored hero + logo + tagline, intro, quick
+  facts card (hours/address/phone + directions + website), services grid, per-brand FAQ
+  accordion, embedded location map, CTA band with "Message this practice" (opens slide-over
+  prefilled to brand). Invalid key → redirect to /.
+- ✅ Blog: `/blog` index (featured + grid) and `/blog/:slug` reader (cover, meta, body, related).
+  Invalid slug → redirect to /blog.
+- ✅ ScrollToTop on route change (Lenis-aware). Navbar + Footer nav wired to all routes.
+- ✅ Frontend testing agent: 100% pass, zero bugs (iteration_4.json).
 
 ## Implemented (2026-06)
 - ✅ Kinetic hero: masked line-by-line headline reveal, parallax AI gradient bg, picker.
@@ -61,7 +80,9 @@ Emergent). Design first, database later.
   real Google reviews integration, accessibility audit pass.
 
 ## Next Tasks
-1. Collect Supabase URL + service_role key + desired admin email/password.
-2. Build Supabase schema + backend data layer; point content + messages at Supabase.
-3. Build `/admin` CMS (auth + content editors + inbox).
-4. Wire direct email + real links/photos.
+1. [PAUSED for user review] Multi-page site complete + tested. User asked to stop & review.
+2. CMS decision pending ("decide later"): either Supabase (needs URL + service_role key +
+   admin email/password) OR no-credentials alternative (JWT auth + MongoDB-backed CMS).
+3. Build `/admin` CMS (auth + content editors for hero/brands/blog/testimonials + message inbox).
+4. Wire direct email on new message (SMTP creds from user).
+5. Replace "#" booking links + placeholder phones with real values; swap AI photos for real ones.
