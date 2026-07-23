@@ -4,8 +4,8 @@ import { motion, AnimatePresence } from "framer-motion";
 import { MessageCircle, Menu, X } from "lucide-react";
 
 const navLinks = [
-  { label: "Pharmacy", to: "/practice/pharmasave" },
   { label: "Clinic", to: "/practice/crescent" },
+  { label: "Pharmacy", to: "/practice/pharmasave" },
   { label: "Physio", to: "/practice/physio" },
   { label: "Blog", to: "/blog" },
 ];
@@ -52,9 +52,9 @@ export const Navbar = ({ content, onOpenForm }) => {
               {content.brandName}
             </span>
             <span className="mt-[4px] flex items-center gap-1.5 text-[9px] font-bold uppercase tracking-[0.16em]">
-              <span style={{ color: "#B10E39" }}>Pharmacy</span>
-              <span className="text-navy-300">·</span>
               <span style={{ color: "#0F7A66" }}>Clinic</span>
+              <span className="text-navy-300">·</span>
+              <span style={{ color: "#B10E39" }}>Pharmacy</span>
               <span className="text-navy-300">·</span>
               <span style={{ color: "#1E3A5F" }}>Physio</span>
             </span>
