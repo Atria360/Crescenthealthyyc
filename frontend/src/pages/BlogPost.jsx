@@ -2,7 +2,7 @@ import { useParams, Link, Navigate } from "react-router-dom";
 import { motion } from "framer-motion";
 import { ArrowLeft, ArrowUpRight, User } from "lucide-react";
 import { formatDate } from "@/lib/format";
-import { blogPosts } from "@/data/blog";
+import { useSite } from "@/context/ContentContext";
 
 const fadeUp = {
   hidden: { opacity: 0, y: 30 },
@@ -11,11 +11,12 @@ const fadeUp = {
 
 export default function BlogPost() {
   const { slug } = useParams();
-  const post = blogPosts.find((p) => p.slug === slug);
+  const { posts } = useSite();
+  const post = posts.find((p) => p.slug === slug);
 
   if (!post) return <Navigate to="/blog" replace />;
 
-  const related = blogPosts.filter((p) => p.slug !== slug).slice(0, 3);
+  const related = posts.filter((p) => p.slug !== slug).slice(0, 3);
 
   return (
     <div data-testid={`blog-post-${post.slug}`}>

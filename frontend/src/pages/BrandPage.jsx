@@ -18,8 +18,8 @@ import {
   AccordionContent,
 } from "@/components/ui/accordion";
 import { LocationMap } from "@/components/LocationMap";
-import { siteContent, mapUrl } from "@/data/siteContent";
-import { brandContent } from "@/data/brandContent";
+import { useSite } from "@/context/ContentContext";
+import { mapUrl } from "@/data/siteContent";
 
 const HERO_BG = {
   pharmasave: "linear-gradient(155deg, #E01449 0%, #A50E36 100%)",
@@ -39,17 +39,22 @@ const fadeUp = {
 export default function BrandPage() {
   const { key } = useParams();
   const { openForm } = useOutletContext();
-  const brand = siteContent.brands.find((b) => b.key === key);
-  const extra = brandContent[key];
+  const { content } = useSite();
+  const brand = content.brands.find((b) => b.key === key);
 
-  if (!brand || !extra) return <Navigate to="/" replace />;
+  if (!brand) return <Navigate to="/" replace />;
+
+  const heroBg = HERO_BG[brand.key] || `linear-gradient(155deg, ${brand.accent}, ${brand.accent})`;
+  const intro = brand.intro || [];
+  const serviceDetails = brand.serviceDetails || [];
+  const faq = brand.faq || [];
 
   return (
     <div data-testid={`brand-page-${brand.key}`}>
       {/* Hero */}
       <section
         className="relative overflow-hidden pt-[72px]"
-        style={{ background: HERO_BG[brand.key] }}
+        style={{ background: heroBg }}
       >
         <div
           aria-hidden
@@ -82,10 +87,10 @@ export default function BrandPage() {
               />
             </div>
             <p className="text-[11px] font-bold uppercase tracking-[0.25em] text-white/75">
-              {extra.serviceType}
+              {brand.serviceType}
             </p>
             <h1 className="mt-4 font-heading text-[clamp(2.25rem,5.5vw,4rem)] font-medium leading-[0.98] tracking-tight text-white">
-              {extra.tagline}
+              {brand.tagline}
             </h1>
             <p className="mt-6 max-w-xl text-lg leading-relaxed text-white/90">
               {brand.oneLiner}
@@ -138,7 +143,7 @@ export default function BrandPage() {
           >
             <p className="eyebrow mb-4">About</p>
             <div className="space-y-5">
-              {extra.intro.map((p, i) => (
+              {intro.map((p, i) => (
                 <p
                   key={i}
                   className="text-lg leading-relaxed text-navy-700 first:text-xl first:text-navy-900"
@@ -257,7 +262,7 @@ export default function BrandPage() {
           </motion.div>
 
           <div className="grid grid-cols-1 gap-5 md:grid-cols-2 lg:grid-cols-3">
-            {extra.serviceDetails.map((s, i) => (
+            {serviceDetails.map((s, i) => (
               <motion.div
                 key={s.name}
                 initial={{ opacity: 0, y: 30 }}
@@ -323,7 +328,7 @@ export default function BrandPage() {
               className="w-full"
               data-testid={`brand-faq-${brand.key}`}
             >
-              {extra.faq.map((f, i) => (
+              {faq.map((f, i) => (
                 <AccordionItem
                   key={i}
                   value={`faq-${i}`}
@@ -355,7 +360,7 @@ export default function BrandPage() {
             viewport={{ once: true, margin: "-80px" }}
             transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
             className="relative overflow-hidden rounded-[1.75rem] p-10 text-center md:p-16"
-            style={{ background: HERO_BG[brand.key] }}
+            style={{ background: heroBg }}
           >
             <div
               aria-hidden

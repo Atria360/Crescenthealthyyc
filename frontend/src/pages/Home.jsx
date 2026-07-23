@@ -5,19 +5,19 @@ import { Testimonials } from "@/components/Testimonials";
 import { FAQ } from "@/components/FAQ";
 import { AboutFamily } from "@/components/AboutFamily";
 import { BlogTeaser } from "@/components/BlogTeaser";
-import { siteContent } from "@/data/siteContent";
-import { blogPosts } from "@/data/blog";
+import { useSite } from "@/context/ContentContext";
 
 export default function Home() {
+  const { content, posts } = useSite();
   return (
     <>
-      <BrandSplitHero brands={siteContent.brands} hero={siteContent.hero} />
-      <ContactStrip brands={siteContent.brands} />
+      <BrandSplitHero brands={content.brands} hero={content.hero} />
+      <ContactStrip brands={content.brands} />
       <LocationMap />
-      <Testimonials items={siteContent.testimonials} />
-      <FAQ items={siteContent.faq} />
-      <AboutFamily content={siteContent.about} marquee={siteContent.marquee} />
-      <BlogTeaser posts={blogPosts.slice(0, 3)} />
+      <Testimonials items={content.testimonials} />
+      <FAQ items={content.faq} />
+      <AboutFamily content={content.about} marquee={content.marquee} />
+      <BlogTeaser posts={posts.slice(0, 3)} />
     </>
   );
 }

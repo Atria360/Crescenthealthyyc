@@ -7,9 +7,10 @@ import { Navbar } from "@/components/Navbar";
 import { Footer } from "@/components/Footer";
 import { MessageForm } from "@/components/MessageForm";
 import { StickyMobileBar } from "@/components/StickyMobileBar";
-import { siteContent } from "@/data/siteContent";
+import { useSite } from "@/context/ContentContext";
 
 export default function Layout() {
+  const { content } = useSite();
   const [formOpen, setFormOpen] = useState(false);
   const [formBrand, setFormBrand] = useState(null);
 
@@ -23,16 +24,16 @@ export default function Layout() {
       <ScrollProgress />
       <ScrollToTop />
       <div className="noise-overlay relative min-h-screen bg-canvas font-body text-navy-900">
-        <Navbar content={siteContent} onOpenForm={() => openForm()} />
+        <Navbar content={content} onOpenForm={() => openForm()} />
         <main>
           <Outlet context={{ openForm }} />
         </main>
-        <Footer content={siteContent} />
+        <Footer content={content} />
         <div className="h-16 md:hidden" />
       </div>
 
       <MessageForm
-        brands={siteContent.brands}
+        brands={content.brands}
         open={formOpen}
         setOpen={setFormOpen}
         initialBrand={formBrand}

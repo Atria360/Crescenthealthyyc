@@ -1,0 +1,36 @@
+{
+  "summary": "Full backend + admin frontend E2E for Crescent Wellness CMS. Backend: 18/18 pytest cases pass (public content/blog/messages, auth login/me + 401, admin CRUD auth guards, content round-trip via PUT /api/admin/content -> reflected in GET /api/content, blog CRUD reflected in public /api/blog + 404 after delete, brute-force lockout returns 429). Frontend admin: /admin -> /admin/login redirect, login -> shell, Messages inbox list + toggle read + delete, Blog create/edit/delete with data-testid selectors and new post appears in public /api/blog, Content editor tabs (general/brands/testimonials/about/faq/footer) render + all 3 brand editors present, Footer tagline edit -> save -> reload public homepage shows change (content round-trip verified via UI), logout returns to /admin/login. No console errors.",
+  "backend_issues": {
+    "critical": [],
+    "minor": [
+      {"endpoint": "PUT /api/admin/content", "issue": "Endpoint accepts arbitrary top-level dict as body (no Pydantic schema). If a client wrongly sends {\"data\": {...}} the wrapper is stored verbatim and corrupts subsequent GET /api/content responses. Recommend validating expected top-level keys (brands/hero/faq/etc) or requiring a wrapper consistently."},
+      {"endpoint": "POST /api/auth/login (429 lockout)", "issue": "In-memory lockout counter (_attempts dict in auth.py) is per-process. Under load-balancing/multi-worker scenarios the 5-attempt threshold is not enforced consistently; observed interleaved 401/429 across rapid requests. Fine for single-worker dev, but flag if scaled. Consider Redis/DB-backed counter."}
+    ]
+  },
+  "frontend_issues": {
+    "ui_bugs": [],
+    "integration_issues": [],
+    "design_issues": []
+  },
+  "test_report_links": [
+    "/app/backend/tests/backend_test.py",
+    "/app/test_reports/pytest/pytest_results.xml"
+  ],
+  "action_items": [
+    "(Optional) Add Pydantic model for PUT /api/admin/content body to prevent accidental wrapping/corruption of stored content.",
+    "(Optional) Move brute-force lockout counter out of in-memory dict for horizontal scaling."
+  ],
+  "critical_code_review_comments": [
+    "PUT /api/admin/content is untyped (data: dict = Body(...)) — any shape is accepted and stored, so a client bug can silently break the public site. Add schema validation or key allowlist.",
+    "AdminBlog Field inputs lack `name` attributes and stable per-field data-testids (only editor root has data-testid=\"blog-editor\"). Adding data-testid on each field (title/slug/tag/etc) would make automated tests more robust.",
+    "Content GET returns raw JSONB with no schema — public frontend assumes shape. Consider a lightweight Pydantic response model to guarantee contract.",
+    "Brute-force lockout keyed on IP+email; behind ingress client.host can be the proxy — effectively per-IP+email global. Acceptable but note this in security docs."
+  ],
+  "updated_files": ["/app/backend/tests/backend_test.py"],
+  "success_rate": {"backend": "100% (18/18)", "frontend": "100% (all critical admin flows verified: login, redirect, messages CRUD, blog CRUD, content round-trip, logout)"},
+  "test_credentials": "info@crescentmedical.ca / Crescenthealth2026! (from /app/memory/test_credentials.md)",
+  "seed_data_creation": "Test blog posts and messages are created and deleted within each test run. Content sentinel edits are reverted. During an intermediate test iteration site_content briefly got wrapped inside a {data: ...} key (root cause: earlier test payload); it was automatically unwrapped and restored — public site content shape confirmed OK (top-level keys: faq, hero, about, brands, footer, marquee, brandName, testimonials).",
+  "retest_needed": false,
+  "should_main_agent_self_test": true,
+  "context_for_next_testing_agent": "backend_test.py is now a full regression suite (18 tests) covering public + auth + admin CRUD + content round-trip + brute-force. IMPORTANT: PUT /api/admin/content expects the content dict AS the body (NOT wrapped in {\"data\": ...}). Frontend admin data-testids listed in review are all present and working. AdminBlog form inputs use label+adjacent-input pattern; recommend using xpath //label[normalize-space()=\"Title\"]/following-sibling::input[1] for future tests."
+}

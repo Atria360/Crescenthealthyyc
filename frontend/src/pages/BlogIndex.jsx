@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
 import { ArrowUpRight } from "lucide-react";
 import { formatDate } from "@/lib/format";
-import { blogPosts } from "@/data/blog";
+import { useSite } from "@/context/ContentContext";
 
 const fadeUp = {
   hidden: { opacity: 0, y: 30 },
@@ -10,7 +10,18 @@ const fadeUp = {
 };
 
 export default function BlogIndex() {
-  const [featured, ...rest] = blogPosts;
+  const { posts } = useSite();
+  const [featured, ...rest] = posts;
+
+  if (!featured) {
+    return (
+      <div className="pt-[72px]" data-testid="blog-index">
+        <div className="container-x py-24 text-center text-navy-500">
+          No articles yet — check back soon.
+        </div>
+      </div>
+    );
+  }
 
   return (
     <div data-testid="blog-index">
