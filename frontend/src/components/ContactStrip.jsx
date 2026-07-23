@@ -2,11 +2,14 @@ import { motion } from "framer-motion";
 import { Phone, Navigation } from "lucide-react";
 import { mapUrl } from "@/data/siteContent";
 
+const ORDER = ["crescent", "pharmasave", "physio"];
+
 export const ContactStrip = ({ brands }) => {
+  const ordered = ORDER.map((k) => brands.find((b) => b.key === k)).filter(Boolean);
   return (
     <section id="contact" className="scroll-mt-24 border-y border-black/5 bg-white/60">
       <div className="container-x grid grid-cols-1 divide-y divide-black/5 md:grid-cols-3 md:divide-x md:divide-y-0">
-        {brands.map((brand, i) => (
+        {ordered.map((brand, i) => (
           <motion.div
             key={brand.key}
             initial={{ opacity: 0, y: 24 }}
