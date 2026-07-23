@@ -40,6 +40,20 @@ Emergent). Design first, database later.
 - Floating contact form (no PHI) with brand dropdown; sticky mobile bar.
 - Premium, purposeful motion throughout.
 
+## Implemented (2026-06 — Supabase CMS)
+- ✅ Supabase Postgres (Shared/Transaction pooler) via SQLAlchemy async + Alembic migrations.
+  Tables: `admin_users`, `site_content` (single 'main' row, JSONB), `blog_posts`, `messages`.
+- ✅ Messages migrated off MongoDB → Postgres. Backend fully rewritten (server.py).
+- ✅ JWT admin auth (bcrypt + PyJWT, Bearer token, in-memory brute-force lockout). Admin seeded
+  from ADMIN_EMAIL/ADMIN_PASSWORD on startup (idempotent). Creds in /app/memory/test_credentials.md.
+- ✅ Public API: GET /api/content, GET /api/blog, GET /api/blog/{slug}, POST /api/messages.
+  Public site now reads content+blog from API via ContentContext (static fallback).
+- ✅ Admin CMS at /admin (dark dashboard, protected): Messages inbox (read/unread/delete),
+  Blog manager (full CRUD + content-block editor), Content editor (tabs: General, Brands,
+  Reviews, About, FAQ, Footer — everything editable incl phones/hours/addresses/booking links).
+- ✅ Tested: backend 18/18 pytest, all admin frontend E2E flows 100% (iteration_5.json).
+  Hardened PUT /admin/content against accidentally-wrapped payloads.
+
 ## Implemented (2026-06 — multi-page refactor)
 - ✅ Converted single page → multi-page with react-router-dom (App.js + Layout with Outlet).
 - ✅ Home hero = 3 vertical brand panels (crescent left, pharmasave middle, physio right) with
@@ -80,9 +94,9 @@ Emergent). Design first, database later.
   real Google reviews integration, accessibility audit pass.
 
 ## Next Tasks
-1. [PAUSED for user review] Multi-page site complete + tested. User asked to stop & review.
-2. CMS decision pending ("decide later"): either Supabase (needs URL + service_role key +
-   admin email/password) OR no-credentials alternative (JWT auth + MongoDB-backed CMS).
-3. Build `/admin` CMS (auth + content editors for hero/brands/blog/testimonials + message inbox).
-4. Wire direct email on new message (SMTP creds from user).
-5. Replace "#" booking links + placeholder phones with real values; swap AI photos for real ones.
+1. [DONE] Supabase-backed CMS: DB + JWT auth + /admin (messages, blog, full content editor).
+2. Direct email on new message (needs SMTP/Resend creds from user) — messages currently only
+   land in the admin inbox.
+3. Image uploads for CMS/blog (object storage) instead of pasting image URLs.
+4. Replace "#" booking links + placeholder phones with real values (editable in CMS now).
+5. Optional hardening: Pydantic response model for /content; DB/Redis-backed brute-force counter.

@@ -175,6 +175,10 @@ async def me(admin: AdminUser = Depends(get_current_admin)):
 async def update_content(
     data: dict = Body(...), admin: AdminUser = Depends(get_current_admin), db=Depends(get_db)
 ):
+    # Guard against accidentally wrapped payloads (e.g. {"data": {...}}) that would
+    # otherwise corrupt the public content shape.
+    if "brands" not in data and "hero" not in data and isinstance(data.get("data"), dict):
+        data = data["data"]
     result = await db.execute(select(SiteContent).where(SiteContent.key == "main"))
     sc = result.scalar_one_or_none()
     if sc:
