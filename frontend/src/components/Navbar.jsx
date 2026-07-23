@@ -1,21 +1,21 @@
 import { useEffect, useState } from "react";
-import { motion } from "framer-motion";
-import { MessageCircle } from "lucide-react";
-import { scrollToId, scrollToTop } from "@/lib/scroll";
+import { Link } from "react-router-dom";
+import { motion, AnimatePresence } from "framer-motion";
+import { MessageCircle, Menu, X } from "lucide-react";
 
-const links = [
-  { label: "Pharmacy", id: "brand-pharmasave" },
-  { label: "Clinic", id: "brand-crescent" },
-  { label: "Physio", id: "brand-physio" },
-  { label: "Reviews", id: "testimonials" },
-  { label: "About", id: "about" },
+const navLinks = [
+  { label: "Pharmacy", to: "/practice/pharmasave" },
+  { label: "Clinic", to: "/practice/crescent" },
+  { label: "Physio", to: "/practice/physio" },
+  { label: "Blog", to: "/blog" },
 ];
 
 export const Navbar = ({ content, onOpenForm }) => {
   const [scrolled, setScrolled] = useState(false);
+  const [menuOpen, setMenuOpen] = useState(false);
 
   useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 40);
+    const onScroll = () => setScrolled(window.scrollY > 20);
     onScroll();
     window.addEventListener("scroll", onScroll, { passive: true });
     return () => window.removeEventListener("scroll", onScroll);
@@ -25,19 +25,18 @@ export const Navbar = ({ content, onOpenForm }) => {
     <motion.header
       initial={{ y: -80, opacity: 0 }}
       animate={{ y: 0, opacity: 1 }}
-      transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1], delay: 0.2 }}
-      className={`fixed top-0 left-0 z-40 w-full transition-colors duration-500 ${
-        scrolled
-          ? "bg-canvas/80 backdrop-blur-xl border-b border-black/5"
-          : "bg-transparent"
+      transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1], delay: 0.15 }}
+      className={`fixed top-0 left-0 z-50 w-full border-b bg-canvas/85 backdrop-blur-xl transition-colors duration-300 ${
+        scrolled || menuOpen ? "border-black/5" : "border-transparent"
       }`}
       data-testid="navbar"
     >
       <nav className="container-x flex h-[72px] items-center justify-between">
-        <button
-          onClick={scrollToTop}
+        <Link
+          to="/"
           data-testid="nav-logo"
           aria-label="Complete Care — home"
+          onClick={() => setMenuOpen(false)}
           className="group flex items-center gap-3"
         >
           <span
@@ -56,36 +55,72 @@ export const Navbar = ({ content, onOpenForm }) => {
               <span style={{ color: "#B10E39" }}>Pharmacy</span>
               <span className="text-navy-300">·</span>
               <span style={{ color: "#0F7A66" }}>Clinic</span>
-              <span style={{ color: "#1E3A5F" }}>·</span>
+              <span className="text-navy-300">·</span>
               <span style={{ color: "#1E3A5F" }}>Physio</span>
             </span>
           </span>
-        </button>
+        </Link>
 
         <div className="hidden items-center gap-8 lg:flex">
-          {links.map((l) => (
-            <button
-              key={l.id}
-              data-testid={`nav-link-${l.id}`}
-              onClick={() => scrollToId(l.id)}
+          {navLinks.map((l) => (
+            <Link
+              key={l.to}
+              to={l.to}
+              data-testid={`nav-link-${l.label.toLowerCase()}`}
               className="text-sm font-medium text-navy-600 transition-colors duration-300 hover:text-navy-900"
             >
               {l.label}
-            </button>
+            </Link>
           ))}
         </div>
 
-        <motion.button
-          data-testid="nav-message-btn"
-          onClick={onOpenForm}
-          whileHover={{ scale: 1.03 }}
-          whileTap={{ scale: 0.97 }}
-          className="flex items-center gap-2 rounded-full bg-navy-900 px-5 py-2.5 text-sm font-semibold text-white"
-        >
-          <MessageCircle className="h-4 w-4" />
-          <span className="hidden sm:inline">Message us</span>
-        </motion.button>
+        <div className="flex items-center gap-2">
+          <motion.button
+            data-testid="nav-message-btn"
+            onClick={onOpenForm}
+            whileHover={{ scale: 1.03 }}
+            whileTap={{ scale: 0.97 }}
+            className="flex items-center gap-2 rounded-full bg-navy-900 px-5 py-2.5 text-sm font-semibold text-white"
+          >
+            <MessageCircle className="h-4 w-4" />
+            <span className="hidden sm:inline">Message us</span>
+          </motion.button>
+          <button
+            data-testid="nav-menu-toggle"
+            aria-label="Toggle menu"
+            onClick={() => setMenuOpen((v) => !v)}
+            className="flex h-10 w-10 items-center justify-center rounded-full text-navy-800 lg:hidden"
+          >
+            {menuOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
+          </button>
+        </div>
       </nav>
+
+      <AnimatePresence>
+        {menuOpen && (
+          <motion.div
+            initial={{ height: 0, opacity: 0 }}
+            animate={{ height: "auto", opacity: 1 }}
+            exit={{ height: 0, opacity: 0 }}
+            transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1] }}
+            className="overflow-hidden border-t border-black/5 bg-canvas lg:hidden"
+          >
+            <div className="container-x flex flex-col py-3">
+              {navLinks.map((l) => (
+                <Link
+                  key={l.to}
+                  to={l.to}
+                  data-testid={`mobile-nav-${l.label.toLowerCase()}`}
+                  onClick={() => setMenuOpen(false)}
+                  className="border-b border-black/5 py-3.5 text-base font-medium text-navy-800 last:border-0"
+                >
+                  {l.label}
+                </Link>
+              ))}
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </motion.header>
   );
 };

@@ -61,7 +61,7 @@ export const siteContent = {
   brands: [
     {
       key: "pharmasave",
-      name: "Pharmasave Dominion Drugs",
+      name: "Pharmasave",
       short: "Pharmasave",
       logo: LOGOS.pharmasave,
       accent: "#D31245",
@@ -69,7 +69,7 @@ export const siteContent = {
       image: IMAGES.pharmacy,
       imageAlt: "Warm modern pharmacy interior with wooden shelves",
       oneLiner:
-        "Your neighbourhood pharmacy — prescriptions, everyday health, and a full Canada Post outlet.",
+        "Your neighbourhood pharmacy — prescriptions and everyday health.",
       badges: ["Free Local Rx Delivery"],
       hours: [
         "Mon–Fri · 9:30 AM – 6:00 PM",

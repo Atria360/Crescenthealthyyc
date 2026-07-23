@@ -1,4 +1,13 @@
+import { Link } from "react-router-dom";
 import { GradientDivider } from "@/components/GradientDivider";
+
+const footerNav = [
+  { label: "Home", to: "/" },
+  { label: "Pharmacy", to: "/practice/pharmasave" },
+  { label: "Clinic", to: "/practice/crescent" },
+  { label: "Physio", to: "/practice/physio" },
+  { label: "Blog", to: "/blog" },
+];
 
 export const Footer = ({ content }) => {
   const { brands, footer } = content;
@@ -31,7 +40,20 @@ export const Footer = ({ content }) => {
           ))}
         </div>
 
-        <div className="mt-14 flex flex-col gap-4 border-t border-black/10 pt-8 text-sm text-navy-500 md:flex-row md:items-center md:justify-between">
+        <nav className="mt-12 flex flex-wrap justify-center gap-x-8 gap-y-3 border-t border-black/10 pt-10">
+          {footerNav.map((l) => (
+            <Link
+              key={l.to}
+              to={l.to}
+              data-testid={`footer-nav-${l.label.toLowerCase()}`}
+              className="text-sm font-medium text-navy-600 transition-colors duration-300 hover:text-navy-900"
+            >
+              {l.label}
+            </Link>
+          ))}
+        </nav>
+
+        <div className="mt-10 flex flex-col gap-4 text-sm text-navy-500 md:flex-row md:items-center md:justify-between">
           <p>{footer.tagline}</p>
           <p className="flex items-center gap-2">
             <span>{footer.legal}</span>

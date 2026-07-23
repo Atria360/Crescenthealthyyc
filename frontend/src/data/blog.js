@@ -1,0 +1,116 @@
+export const blogPosts = [
+  {
+    slug: "flu-season-calgary-vaccine-questions",
+    title: "Flu Season in Calgary: Your Vaccine Questions Answered",
+    excerpt:
+      "When to get your flu shot, who should get one, and why your neighbourhood pharmacy is the easiest place to do it.",
+    cover:
+      "https://images.unsplash.com/photo-1631941618536-2979d565b726?crop=entropy&cs=srgb&fm=jpg&q=85&w=1600",
+    date: "2026-05-28",
+    readTime: "4 min read",
+    author: "Pharmasave Team",
+    tag: "Pharmacy",
+    accent: "#D31245",
+    content: [
+      { type: "p", text: "As the weather cools in Calgary, flu season ramps up. A yearly flu shot remains the single most effective way to protect yourself and the people around you — and it's easier to get than you might think." },
+      { type: "h", text: "When should I get my flu shot?" },
+      { type: "p", text: "The best time is early fall, before flu activity peaks. That said, getting vaccinated at any point during the season still offers strong protection. It takes about two weeks for your body to build full immunity." },
+      { type: "h", text: "Who should get vaccinated?" },
+      { type: "p", text: "Public health recommends the flu vaccine for everyone six months and older, especially seniors, young children, pregnant individuals, and anyone with a chronic condition." },
+      { type: "h", text: "The easy option: your pharmacy" },
+      { type: "p", text: "You don't need an appointment. Walk in during opening hours and one of our certified pharmacists can administer your flu shot in minutes — no doctor's visit required." },
+    ],
+  },
+  {
+    slug: "blister-packs-manage-medications",
+    title: "Blister Packs: A Simpler Way to Manage Your Medications",
+    excerpt:
+      "Juggling several prescriptions? Blister packs take the guesswork out of taking the right dose at the right time.",
+    cover:
+      "https://images.pexels.com/photos/9629685/pexels-photo-9629685.jpeg?auto=compress&cs=tinysrgb&w=1600",
+    date: "2026-05-12",
+    readTime: "3 min read",
+    author: "Pharmasave Team",
+    tag: "Pharmacy",
+    accent: "#D31245",
+    content: [
+      { type: "p", text: "If you or someone you care for takes multiple medications, keeping track of what to take and when can quickly become overwhelming. Blister packs are a simple, free solution." },
+      { type: "h", text: "What is a blister pack?" },
+      { type: "p", text: "A blister pack organizes your medications into clearly labelled compartments by day and time of day. Each dose is sealed and ready — just press and take." },
+      { type: "h", text: "Why patients love them" },
+      { type: "p", text: "No more pill organizers to fill, no more second-guessing whether you took your morning dose. Blister packs are especially helpful for seniors, caregivers, and anyone managing a busy schedule." },
+      { type: "p", text: "Ask our pharmacy team how to switch — we'll set everything up for you." },
+    ],
+  },
+  {
+    slug: "5-signs-see-family-doctor",
+    title: "5 Signs It's Time to See Your Family Doctor",
+    excerpt:
+      "Not every symptom needs the ER, but some shouldn't be ignored either. Here's when to book a visit with your family physician.",
+    cover:
+      "https://images.pexels.com/photos/8460125/pexels-photo-8460125.jpeg?auto=compress&cs=tinysrgb&w=1600",
+    date: "2026-04-30",
+    readTime: "5 min read",
+    author: "Crescent Medical Centre",
+    tag: "Clinic",
+    accent: "#1B4F9C",
+    content: [
+      { type: "p", text: "Your family doctor is your partner in long-term health. Regular visits help catch problems early — but it's not always obvious when to book one. Here are five signs it's time." },
+      { type: "h", text: "1. A symptom that won't go away" },
+      { type: "p", text: "A cough, ache or fatigue lingering beyond two weeks deserves a professional look." },
+      { type: "h", text: "2. You're overdue for a checkup" },
+      { type: "p", text: "Annual physicals and screenings catch issues before they become serious — even when you feel fine." },
+      { type: "h", text: "3. Managing a chronic condition" },
+      { type: "p", text: "Conditions like diabetes, blood pressure or asthma need regular monitoring to stay on track." },
+      { type: "h", text: "4. Mental health matters too" },
+      { type: "p", text: "Persistent stress, low mood or sleep trouble are all worth a conversation with your doctor." },
+      { type: "h", text: "5. You need a referral or renewal" },
+      { type: "p", text: "From specialist referrals to prescription renewals, your family doctor keeps your care coordinated." },
+    ],
+  },
+  {
+    slug: "back-pain-when-to-see-physiotherapist",
+    title: "Back Pain 101: When to See a Physiotherapist",
+    excerpt:
+      "Most back pain improves on its own — but here's how to know when it's time to get professional help.",
+    cover:
+      "https://images.pexels.com/photos/20860625/pexels-photo-20860625.jpeg?auto=compress&cs=tinysrgb&w=1600",
+    date: "2026-04-15",
+    readTime: "4 min read",
+    author: "The Physio Studio",
+    tag: "Physio",
+    accent: "#1E3A5F",
+    content: [
+      { type: "p", text: "Back pain is one of the most common reasons people seek care. The good news: most cases improve with the right movement and guidance." },
+      { type: "h", text: "When to wait it out" },
+      { type: "p", text: "Mild pain after a long day or a new activity often eases within a few days with gentle movement and rest." },
+      { type: "h", text: "When to book an assessment" },
+      { type: "p", text: "See a physiotherapist if pain lasts more than a week, keeps returning, radiates down your leg, or limits your daily activities. No referral is required." },
+      { type: "h", text: "What treatment looks like" },
+      { type: "p", text: "We start with a thorough assessment, then build a personalized plan combining hands-on treatment and targeted exercise to get you moving pain-free — and keep you that way." },
+    ],
+  },
+  {
+    slug: "building-healthy-habits-that-stick",
+    title: "Building Healthy Habits That Actually Stick",
+    excerpt:
+      "Lasting health isn't about willpower — it's about small, repeatable systems. Here's how to build them.",
+    cover:
+      "https://images.pexels.com/photos/19783892/pexels-photo-19783892.jpeg?auto=compress&cs=tinysrgb&w=1600",
+    date: "2026-03-29",
+    readTime: "5 min read",
+    author: "Complete Care",
+    tag: "Wellness",
+    accent: "#1FA48A",
+    content: [
+      { type: "p", text: "We all want to be healthier, but big resolutions rarely last. The secret is starting small and letting momentum do the work." },
+      { type: "h", text: "Start absurdly small" },
+      { type: "p", text: "Want to move more? Commit to a five-minute walk. Tiny habits are easy to repeat — and repetition is what builds identity." },
+      { type: "h", text: "Anchor to something you already do" },
+      { type: "p", text: "Attach a new habit to an existing routine: stretch while the kettle boils, take your medication with breakfast, walk after dinner." },
+      { type: "h", text: "Track and celebrate" },
+      { type: "p", text: "Marking each small win keeps you motivated. Progress, not perfection, is the goal." },
+      { type: "p", text: "And remember — your care team is here to help, whether that's a medication review, a checkup, or a movement plan." },
+    ],
+  },
+];
