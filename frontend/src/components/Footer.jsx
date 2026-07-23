@@ -9,14 +9,17 @@ const footerNav = [
   { label: "Blog", to: "/blog" },
 ];
 
+const LOGO_ORDER = ["crescent", "pharmasave", "physio"];
+
 export const Footer = ({ content }) => {
   const { brands, footer } = content;
+  const orderedBrands = LOGO_ORDER.map((k) => brands.find((b) => b.key === k)).filter(Boolean);
   return (
     <footer className="bg-[#F0EFEA]">
       <GradientDivider animated />
       <div className="container-x py-16">
         <div className="flex w-full flex-col items-center justify-between gap-10 sm:flex-row">
-          {brands.map((brand, i) => (
+          {orderedBrands.map((brand, i) => (
             <a
               key={brand.key}
               href={brand.website}
@@ -26,7 +29,7 @@ export const Footer = ({ content }) => {
               className={`flex flex-1 transition-opacity duration-300 hover:opacity-70 ${
                 i === 0
                   ? "justify-center sm:justify-start"
-                  : i === brands.length - 1
+                  : i === orderedBrands.length - 1
                     ? "justify-center sm:justify-end"
                     : "justify-center"
               }`}
