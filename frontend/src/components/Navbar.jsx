@@ -35,7 +35,7 @@ export const Navbar = ({ content, onOpenForm }) => {
         <Link
           to="/"
           data-testid="nav-logo"
-          aria-label="Complete Care — home"
+          aria-label="Crescent Wellness Centre — home"
           onClick={() => setMenuOpen(false)}
           className="group flex items-center gap-3"
         >

@@ -99,7 +99,7 @@ export const blogPosts = [
       "https://images.pexels.com/photos/19783892/pexels-photo-19783892.jpeg?auto=compress&cs=tinysrgb&w=1600",
     date: "2026-03-29",
     readTime: "5 min read",
-    author: "Complete Care",
+    author: "Crescent Wellness Centre",
     tag: "Wellness",
     accent: "#1FA48A",
     content: [

@@ -27,11 +27,11 @@ export const brandColors = {
 };
 
 export const siteContent = {
-  brandName: "Complete Care",
+  brandName: "Crescent Wellness Centre",
 
   hero: {
     eyebrow: "Pharmacy · Medical Clinic · Physiotherapy",
-    titleLines: ["Complete Care", "Under One Roof"],
+    titleLines: ["Complete Wellness,", "Under One Roof"],
     subheadline:
       "Pharmacy · Medical Clinic · Physiotherapy — proudly serving Calgary.",
     heroImage: IMAGES.hero,
@@ -263,11 +263,11 @@ export const siteContent = {
     },
   ],
 
-  marquee: ["Complete Care", "Under One Roof", "Calgary · Alberta"],
+  marquee: ["Crescent Wellness Centre", "Under One Roof", "Calgary · Alberta"],
 
   footer: {
     tagline: "Independently owned and operated in Calgary, Alberta.",
-    legal: "© 2026 Complete Care Family Health",
+    legal: "© 2026 Crescent Wellness Centre",
     privacyLabel: "Privacy Policy",
   },
 };
