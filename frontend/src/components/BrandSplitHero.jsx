@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
-import { Phone, ArrowRight, ArrowUpRight, Clock, MapPin } from "lucide-react";
+import { Phone, ArrowRight, ArrowUpRight, Clock, MapPin, Globe } from "lucide-react";
 
 const META = {
   crescent: {
@@ -140,7 +140,7 @@ export const BrandSplitHero = ({ brands, hero }) => {
                     {brand.primaryLabel}
                     <ArrowRight className="h-4 w-4" />
                   </motion.a>
-                  <div className="flex items-center gap-4">
+                  <div className="flex flex-wrap items-center justify-center gap-x-4 gap-y-2">
                     <a
                       href={`tel:${brand.phoneRaw}`}
                       data-testid={`panel-call-${brand.key}`}
@@ -156,6 +156,16 @@ export const BrandSplitHero = ({ brands, hero }) => {
                     >
                       More info <ArrowUpRight className="h-4 w-4" />
                     </Link>
+                    <span className="text-white/30">·</span>
+                    <a
+                      href={brand.website}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      data-testid={`panel-website-${brand.key}`}
+                      className="inline-flex items-center gap-1.5 text-sm font-semibold text-white/90 underline-offset-4 hover:underline"
+                    >
+                      <Globe className="h-4 w-4" /> Website
+                    </a>
                   </div>
                 </div>
               </div>
