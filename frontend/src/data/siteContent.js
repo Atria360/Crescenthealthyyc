@@ -1,6 +1,8 @@
 // Central content model for the Healthcare Hub.
 // This drives the entire marketing site and will later be editable via the CMS admin.
 
+import { brandContent } from "@/data/brandContent";
+
 const LOGOS = {
   pharmasave:
     "https://customer-assets-4nw71qhi.emergentagent.net/job_8d3ec219-8596-4c66-bad8-677f53c921e9/artifacts/rtq43l3p_4_Pharmasave_Primary_Logo_RGB.png",
@@ -271,6 +273,14 @@ export const siteContent = {
     privacyLabel: "Privacy Policy",
   },
 };
+
+// Fold the extended per-brand page content (tagline, intro, services, FAQ)
+// into the static fallback so brand pages are complete even when the CMS
+// backend is unavailable (e.g. static hosting).
+siteContent.brands = siteContent.brands.map((b) => ({
+  ...b,
+  ...(brandContent[b.key] || {}),
+}));
 
 export const mapUrl = (address) =>
   `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(address)}`;
