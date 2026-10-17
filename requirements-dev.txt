@@ -1,0 +1,6 @@
+-r requirements.txt
+uvicorn==0.25.0
+alembic==1.18.5
+psycopg2-binary==2.9.12
+pytest==9.1.1
+requests==2.34.2

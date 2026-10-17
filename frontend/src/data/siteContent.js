@@ -4,22 +4,16 @@
 import { brandContent } from "@/data/brandContent";
 
 const LOGOS = {
-  pharmasave:
-    "https://customer-assets-4nw71qhi.emergentagent.net/job_8d3ec219-8596-4c66-bad8-677f53c921e9/artifacts/rtq43l3p_4_Pharmasave_Primary_Logo_RGB.png",
-  crescent:
-    "https://customer-assets-4nw71qhi.emergentagent.net/job_8d3ec219-8596-4c66-bad8-677f53c921e9/artifacts/ej2sgj35_Transparent%2BPNG%2B-%2Busable%2Beverywhere.-01-01%2B%282%29%2B%281%29%2B%281%29%20%282%29.png",
-  physio:
-    "https://customer-assets-4nw71qhi.emergentagent.net/job_8d3ec219-8596-4c66-bad8-677f53c921e9/artifacts/edocribc_physio-horizontal.png",
+  pharmasave: "/images/logo-pharmasave.png",
+  crescent: "/images/logo-crescent.png",
+  physio: "/images/logo-physio.png",
 };
 
 const IMAGES = {
-  hero: "https://static.prod-images.emergentagent.com/jobs/8d3ec219-8596-4c66-bad8-677f53c921e9/images/af4c083fd347977db1678e7bf3097a96bf232f26c4d673a2fbd71579f57b20f3.png",
-  pharmacy:
-    "https://static.prod-images.emergentagent.com/jobs/8d3ec219-8596-4c66-bad8-677f53c921e9/images/d206d16469dc5d67c44748644eeaf6e69d23981ca3bcce3312f7e063265c327c.png",
-  clinic:
-    "https://static.prod-images.emergentagent.com/jobs/8d3ec219-8596-4c66-bad8-677f53c921e9/images/aab8a605fbe23e2a0b6bb08c86d12fa48bcbea80ff539316e2de62c26d8bed5f.png",
-  physio:
-    "https://static.prod-images.emergentagent.com/jobs/8d3ec219-8596-4c66-bad8-677f53c921e9/images/e627d3942bc317ffbd7c7253e8ba0fdfb7a2eb9165cde808ac4079816a9fd5f9.png",
+  hero: "/images/hero.png",
+  pharmacy: "/images/pharmacy.png",
+  clinic: "/images/clinic.png",
+  physio: "/images/physio.png",
 };
 
 export const brandColors = {
