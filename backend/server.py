@@ -9,7 +9,7 @@ import logging
 from typing import Optional
 from fastapi import FastAPI, APIRouter, Depends, HTTPException, Request, Body
 from starlette.middleware.cors import CORSMiddleware
-from pydantic import BaseModel
+from pydantic import BaseModel, Field
 from sqlalchemy import select, func
 
 from database import AsyncSessionLocal, get_db
@@ -28,7 +28,7 @@ from seed_data import DEFAULT_CONTENT, DEFAULT_POSTS
 logging.basicConfig(level=logging.INFO, format="%(asctime)s - %(name)s - %(levelname)s - %(message)s")
 logger = logging.getLogger(__name__)
 
-app = FastAPI(title="Crescent Wellness Centre API")
+app = FastAPI(title="Crescent Wellness Centre API", docs_url=None, redoc_url=None, openapi_url=None)
 api_router = APIRouter(prefix="/api")
 
 
@@ -39,10 +39,10 @@ class LoginInput(BaseModel):
 
 
 class MessageCreate(BaseModel):
-    name: str
-    contact: str
-    brand: str
-    message: str
+    name: str = Field(min_length=1, max_length=200)
+    contact: str = Field(min_length=1, max_length=200)
+    brand: str = Field(min_length=1, max_length=120)
+    message: str = Field(min_length=1, max_length=5000)
 
 
 class BlogInput(BaseModel):
@@ -99,6 +99,15 @@ def admin_to_dict(u: AdminUser) -> dict:
     return {"id": u.id, "email": u.email, "name": u.name, "role": u.role}
 
 
+def _client_ip(request: Request) -> str:
+    # Vercel's edge sets x-real-ip and overwrites any client-supplied value.
+    forwarded = request.headers.get("x-real-ip") or request.headers.get("x-forwarded-for", "")
+    ip = forwarded.split(",")[0].strip()
+    if ip:
+        return ip
+    return request.client.host if request.client else "unknown"
+
+
 def _slugify(text: str) -> str:
     import re
     s = re.sub(r"[^a-z0-9]+", "-", text.lower()).strip("-")
@@ -148,8 +157,7 @@ async def create_message(payload: MessageCreate, db=Depends(get_db)):
 @api_router.post("/auth/login")
 async def login(payload: LoginInput, request: Request, db=Depends(get_db)):
     email = payload.email.strip().lower()
-    ip = request.client.host if request.client else "unknown"
-    identifier = f"{ip}:{email}"
+    identifier = f"{_client_ip(request)}:{email}"
 
     if is_locked(identifier):
         raise HTTPException(status_code=429, detail="Too many attempts. Try again in 15 minutes.")
@@ -310,13 +318,17 @@ async def admin_stats(admin: AdminUser = Depends(get_current_admin), db=Depends(
 
 app.include_router(api_router)
 
-app.add_middleware(
-    CORSMiddleware,
-    allow_credentials=True,
-    allow_origins=os.environ.get("CORS_ORIGINS", "*").split(","),
-    allow_methods=["*"],
-    allow_headers=["*"],
-)
+# The site and API share an origin in production; CORS is only needed when the
+# frontend dev server runs on a different port.
+_cors_origins = [o.strip() for o in os.environ.get("CORS_ORIGINS", "").split(",") if o.strip()]
+if _cors_origins:
+    app.add_middleware(
+        CORSMiddleware,
+        allow_credentials=True,
+        allow_origins=_cors_origins,
+        allow_methods=["*"],
+        allow_headers=["*"],
+    )
 
 
 # ---------- Startup seeding ----------
@@ -357,6 +369,10 @@ async def seed():
 
 @app.on_event("startup")
 async def on_startup():
+    # Production data already exists; seeding (which also resets the admin
+    # password from ADMIN_PASSWORD) is for fresh local databases only.
+    if os.environ.get("SEED_ON_STARTUP") != "1":
+        return
     try:
         await seed()
     except Exception as e:
