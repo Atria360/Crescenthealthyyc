@@ -80,7 +80,7 @@ export default function BrandPage() {
               style={{ background: heroBg }}
             />
             <motion.img
-              src={brand.logo}
+              src={brand.heroLogo || brand.logo}
               alt={brand.name}
               initial={{ opacity: 0, scale: 0.94 }}
               animate={{ opacity: 1, scale: 1 }}

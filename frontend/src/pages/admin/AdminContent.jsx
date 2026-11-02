@@ -206,6 +206,7 @@ export default function AdminContent() {
                   <Field label="Website URL" value={b.website} onChange={(v) => set((d) => (d.brands[bi].website = v))} />
                   <Field label="Website label" value={b.websiteLabel} onChange={(v) => set((d) => (d.brands[bi].websiteLabel = v))} />
                   <Field label="Logo URL" value={b.logo} onChange={(v) => set((d) => (d.brands[bi].logo = v))} />
+                  <Field label="Banner logo URL (practice page, optional)" value={b.heroLogo} onChange={(v) => set((d) => (d.brands[bi].heroLogo = v))} />
                   <Field label="Interior image URL" value={b.image} onChange={(v) => set((d) => (d.brands[bi].image = v))} />
                 </div>
                 <div className="mt-4 space-y-4">

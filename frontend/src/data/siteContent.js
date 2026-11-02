@@ -146,6 +146,7 @@ export const siteContent = {
       name: "The Physio Studio",
       short: "The Physio Studio",
       logo: LOGOS.physio,
+      heroLogo: "/images/logo-physio-stacked.png",
       accent: "#1E3A5F",
       accent2: "#9BB8A5",
       surface: "#F2F6F4",
