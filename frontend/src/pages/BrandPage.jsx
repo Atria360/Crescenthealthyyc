@@ -53,87 +53,101 @@ export default function BrandPage() {
 
   return (
     <div data-testid={`brand-page-${brand.key}`}>
-      {/* Hero */}
+      {/* Hero: brand-gradient copy beside a white logo plate (stacked on mobile) */}
       <section
         className="relative overflow-hidden pt-[72px]"
         style={{ background: heroBg }}
       >
         <div
           aria-hidden
-          className="absolute -right-24 -top-24 h-96 w-96 rounded-full bg-white/10 blur-3xl"
+          className="absolute -left-24 top-1/3 h-96 w-96 rounded-full bg-white/10 blur-3xl"
         />
         <div
           aria-hidden
-          className="absolute -bottom-32 -left-16 h-80 w-80 rounded-full bg-white/10 blur-3xl"
+          className="absolute -bottom-32 left-1/3 h-80 w-80 rounded-full bg-white/10 blur-3xl"
         />
-        <div className="container-x relative z-10 py-16 md:py-24">
-          <Link
-            to="/"
-            data-testid="brand-back-home"
-            className="mb-8 inline-flex items-center gap-2 text-sm font-semibold text-white/80 transition-colors hover:text-white"
-          >
-            <ArrowLeft className="h-4 w-4" /> Back to Crescent Wellness Centre
-          </Link>
-
+        <div className="relative z-10 grid lg:min-h-[620px] lg:grid-cols-[minmax(0,1fr)_40%] xl:grid-cols-[minmax(0,1fr)_44%]">
           <motion.div
-            variants={fadeUp}
-            initial="hidden"
-            animate="show"
-            className="max-w-3xl"
+            data-testid={`brand-hero-logo-${brand.key}`}
+            initial={{ opacity: 0, x: 40 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
+            className="relative flex items-center justify-center bg-white px-8 py-12 sm:py-16 lg:order-2 lg:px-8 lg:py-16 lg:shadow-[-30px_0_60px_rgba(0,0,0,0.18)] xl:px-14"
           >
-            <div
-              data-testid={`brand-hero-logo-${brand.key}`}
-              className="mb-10 flex w-full max-w-[640px] items-center justify-center rounded-3xl bg-white px-8 py-8 shadow-[0_20px_50px_rgba(0,0,0,0.22)] md:px-12 md:py-10"
-            >
-              <img
-                src={brand.logo}
-                alt={brand.name}
-                className="h-auto max-h-28 w-full object-contain sm:max-h-36 md:max-h-44"
-              />
-            </div>
-            <p className="text-[11px] font-bold uppercase tracking-[0.25em] text-white/75">
-              {brand.serviceType}
-            </p>
-            <h1 className="mt-4 font-heading text-[clamp(2.25rem,5.5vw,4rem)] font-medium leading-[0.98] tracking-tight text-white">
-              {brand.tagline}
-            </h1>
-            <p className="mt-6 max-w-xl text-lg leading-relaxed text-white/90">
-              {brand.oneLiner}
-            </p>
-
-            <div className="mt-7 flex flex-wrap gap-2">
-              {brand.badges.map((b) => (
-                <span
-                  key={b}
-                  className="rounded-full bg-white/15 px-3.5 py-1.5 text-xs font-semibold uppercase tracking-wider text-white backdrop-blur"
-                >
-                  {b}
-                </span>
-              ))}
-            </div>
-
-            <div className="mt-9 flex flex-wrap items-center gap-3">
-              <motion.a
-                href={brand.primaryHref}
-                {...externalLinkProps(brand.primaryHref)}
-                data-testid={`brand-primary-${brand.key}`}
-                whileHover={{ scale: 1.03 }}
-                whileTap={{ scale: 0.97 }}
-                className="inline-flex items-center gap-2 rounded-full bg-white px-7 py-3.5 text-sm font-semibold shadow-lg"
-                style={{ color: brand.accent }}
-              >
-                {brand.primaryLabel}
-                <ArrowRight className="h-4 w-4" />
-              </motion.a>
-              <a
-                href={`tel:${brand.phoneRaw}`}
-                data-testid={`brand-call-${brand.key}`}
-                className="inline-flex items-center gap-2 rounded-full border border-white/40 px-6 py-3.5 text-sm font-semibold text-white transition-colors hover:bg-white/10"
-              >
-                <Phone className="h-4 w-4" /> {brand.phone}
-              </a>
-            </div>
+            <span
+              aria-hidden
+              className="absolute inset-x-0 bottom-0 h-1.5"
+              style={{ background: heroBg }}
+            />
+            <motion.img
+              src={brand.logo}
+              alt={brand.name}
+              initial={{ opacity: 0, scale: 0.94 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ duration: 0.9, delay: 0.2, ease: [0.22, 1, 0.36, 1] }}
+              className="h-auto max-h-32 w-full max-w-[480px] object-contain sm:max-h-40 lg:max-h-[220px] lg:max-w-[520px]"
+            />
           </motion.div>
+
+          <div className="px-6 py-14 md:px-12 md:py-20 lg:order-1 lg:flex lg:flex-col lg:justify-center lg:py-20 lg:pl-[max(3rem,calc((100vw_-_1400px)/2_+_3rem))] lg:pr-14">
+            <Link
+              to="/"
+              data-testid="brand-back-home"
+              className="mb-8 inline-flex w-fit items-center gap-2 text-sm font-semibold text-white/80 transition-colors hover:text-white"
+            >
+              <ArrowLeft className="h-4 w-4" /> Back to Crescent Wellness Centre
+            </Link>
+
+            <motion.div
+              variants={fadeUp}
+              initial="hidden"
+              animate="show"
+              className="max-w-2xl"
+            >
+              <p className="text-[11px] font-bold uppercase tracking-[0.25em] text-white/75">
+                {brand.serviceType}
+              </p>
+              <h1 className="mt-4 font-heading text-[clamp(2.25rem,4.6vw,4rem)] font-medium leading-[0.98] tracking-tight text-white">
+                {brand.tagline}
+              </h1>
+              <p className="mt-6 max-w-xl text-lg leading-relaxed text-white/90">
+                {brand.oneLiner}
+              </p>
+
+              <div className="mt-7 flex flex-wrap gap-2">
+                {brand.badges.map((b) => (
+                  <span
+                    key={b}
+                    className="rounded-full bg-white/15 px-3.5 py-1.5 text-xs font-semibold uppercase tracking-wider text-white backdrop-blur"
+                  >
+                    {b}
+                  </span>
+                ))}
+              </div>
+
+              <div className="mt-9 flex flex-wrap items-center gap-3">
+                <motion.a
+                  href={brand.primaryHref}
+                  {...externalLinkProps(brand.primaryHref)}
+                  data-testid={`brand-primary-${brand.key}`}
+                  whileHover={{ scale: 1.03 }}
+                  whileTap={{ scale: 0.97 }}
+                  className="inline-flex items-center gap-2 rounded-full bg-white px-7 py-3.5 text-sm font-semibold shadow-lg"
+                  style={{ color: brand.accent }}
+                >
+                  {brand.primaryLabel}
+                  <ArrowRight className="h-4 w-4" />
+                </motion.a>
+                <a
+                  href={`tel:${brand.phoneRaw}`}
+                  data-testid={`brand-call-${brand.key}`}
+                  className="inline-flex items-center gap-2 rounded-full border border-white/40 px-6 py-3.5 text-sm font-semibold text-white transition-colors hover:bg-white/10"
+                >
+                  <Phone className="h-4 w-4" /> {brand.phone}
+                </a>
+              </div>
+            </motion.div>
+          </div>
         </div>
       </section>
 
