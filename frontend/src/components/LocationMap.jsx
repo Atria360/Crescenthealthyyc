@@ -1,11 +1,8 @@
 import { motion } from "framer-motion";
 import { MapPin, Navigation } from "lucide-react";
-import { mapUrl } from "@/data/siteContent";
+import { DIRECTIONS_URL, MAP_EMBED_URL } from "@/data/siteContent";
 
 const ADDRESS = "150-909 5 Avenue SW, Calgary, AB";
-const EMBED = `https://maps.google.com/maps?q=${encodeURIComponent(
-  ADDRESS,
-)}&z=15&output=embed`;
 
 export const LocationMap = () => {
   return (
@@ -40,7 +37,7 @@ export const LocationMap = () => {
             </div>
 
             <motion.a
-              href={mapUrl(ADDRESS)}
+              href={DIRECTIONS_URL}
               target="_blank"
               rel="noopener noreferrer"
               data-testid="location-directions"
@@ -56,11 +53,11 @@ export const LocationMap = () => {
           <div className="min-h-[340px] lg:col-span-3 lg:min-h-[460px]">
             <iframe
               title="Map showing 150-909 5 Avenue SW, Calgary, AB"
-              src={EMBED}
+              src={MAP_EMBED_URL}
               data-testid="location-map"
               className="h-full w-full border-0"
               loading="lazy"
-              referrerPolicy="no-referrer-when-downgrade"
+              referrerPolicy="strict-origin-when-cross-origin"
               allowFullScreen
             />
           </div>

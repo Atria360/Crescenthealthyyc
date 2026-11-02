@@ -19,7 +19,8 @@ import {
 } from "@/components/ui/accordion";
 import { LocationMap } from "@/components/LocationMap";
 import { useSite } from "@/context/ContentContext";
-import { mapUrl } from "@/data/siteContent";
+import { ContactLines } from "@/components/ContactLines";
+import { DIRECTIONS_URL } from "@/data/siteContent";
 
 const HERO_BG = {
   pharmasave: "linear-gradient(155deg, #E01449 0%, #A50E36 100%)",
@@ -217,12 +218,13 @@ export default function BrandPage() {
                   >
                     {brand.phone}
                   </a>
+                  <ContactLines lines={brand.extraPhones} className="mt-2" />
                 </div>
               </div>
 
               <div className="mt-8 flex flex-col gap-3 border-t border-black/5 pt-6">
                 <a
-                  href={mapUrl(brand.address)}
+                  href={DIRECTIONS_URL}
                   target="_blank"
                   rel="noopener noreferrer"
                   data-testid={`brand-directions-${brand.key}`}

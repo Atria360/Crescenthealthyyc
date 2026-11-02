@@ -1,8 +1,6 @@
 import { CalendarClock, MessageCircle, MapPin } from "lucide-react";
 import { scrollToId } from "@/lib/scroll";
-import { mapUrl } from "@/data/siteContent";
-
-const ADDRESS = "150-909 5 Avenue SW, Calgary, AB";
+import { DIRECTIONS_URL } from "@/data/siteContent";
 
 export const StickyMobileBar = ({ onMessage }) => {
   return (
@@ -26,7 +24,7 @@ export const StickyMobileBar = ({ onMessage }) => {
         </button>
         <a
           data-testid="mobile-directions"
-          href={mapUrl(ADDRESS)}
+          href={DIRECTIONS_URL}
           target="_blank"
           rel="noopener noreferrer"
           className="flex flex-col items-center gap-1 py-3 text-navy-700 active:bg-black/5"

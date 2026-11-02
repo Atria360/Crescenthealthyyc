@@ -1,7 +1,7 @@
 import { useCallback, useEffect, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Star, ChevronLeft, ChevronRight } from "lucide-react";
-import { brandColors } from "@/data/siteContent";
+import { Star, ChevronLeft, ChevronRight, ArrowUpRight } from "lucide-react";
+import { brandColors, DIRECTIONS_URL } from "@/data/siteContent";
 
 export const Testimonials = ({ items }) => {
   const [index, setIndex] = useState(0);
@@ -100,6 +100,18 @@ export const Testimonials = ({ items }) => {
           >
             <ChevronRight className="h-5 w-5" />
           </button>
+        </div>
+
+        <div className="mt-8 flex justify-center">
+          <a
+            href={DIRECTIONS_URL}
+            target="_blank"
+            rel="noopener noreferrer"
+            data-testid="testimonial-google-reviews"
+            className="inline-flex items-center gap-2 text-sm font-semibold text-navy-800 transition-opacity hover:opacity-70"
+          >
+            Read our reviews on Google <ArrowUpRight className="h-4 w-4" />
+          </a>
         </div>
       </div>
     </section>

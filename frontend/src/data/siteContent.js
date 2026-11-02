@@ -73,8 +73,12 @@ export const siteContent = {
         "Sun · Closed",
       ],
       address: "150-909 5 Avenue SW, Calgary, AB",
-      phone: "(403) 555-0100",
-      phoneRaw: "+14035550100",
+      phone: "403-227-8630",
+      phoneRaw: "+14032278630",
+      extraPhones: [
+        { label: "Line 2", number: "403-227-8631" },
+        { label: "Fax", number: "403-227-8632" },
+      ],
       primaryLabel: "Refill a Prescription",
       primaryHref: "#",
       website: "https://pharmasave.com",
@@ -113,8 +117,12 @@ export const siteContent = {
         "Sun · Closed",
       ],
       address: "150-909 5 Avenue SW, Calgary, AB",
-      phone: "(403) 555-0150",
-      phoneRaw: "+14035550150",
+      phone: "825-395-4309",
+      phoneRaw: "+18253954309",
+      extraPhones: [
+        { label: "Toll-free", number: "877-867-8114" },
+        { label: "Fax", number: "825-395-4400" },
+      ],
       primaryLabel: "Book Appointment",
       primaryHref: "#",
       website: "https://crescentmedical.ca",
@@ -152,8 +160,12 @@ export const siteContent = {
         "Sun · Closed",
       ],
       address: "150-909 5 Avenue SW, Calgary, AB",
-      phone: "(403) 555-0175",
-      phoneRaw: "+14035550175",
+      phone: "825-395-4309",
+      phoneRaw: "+18253954309",
+      extraPhones: [
+        { label: "Toll-free", number: "877-867-8114" },
+        { label: "Fax", number: "825-395-4400" },
+      ],
       primaryLabel: "Book Now",
       primaryHref: "#",
       website: "https://physiostudiohealth.ca",
@@ -276,5 +288,7 @@ siteContent.brands = siteContent.brands.map((b) => ({
   ...(brandContent[b.key] || {}),
 }));
 
-export const mapUrl = (address) =>
-  `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(address)}`;
+// Google listing for the shared downtown location (all three practices).
+export const DIRECTIONS_URL = "https://maps.app.goo.gl/dJZQa66tP6gq4aBT6";
+export const MAP_EMBED_URL =
+  "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d20066.878812008654!2d-114.11162069999997!3d51.04644295!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x53716fd98abb363f%3A0x22ea9ec5d11a62ff!2sCrescent%20Medical%20Centre%20Downtown!5e0!3m2!1sen!2sca!4v1793638245651!5m2!1sen!2sca";

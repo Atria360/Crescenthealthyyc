@@ -1,6 +1,7 @@
 import { motion } from "framer-motion";
 import { Phone, Navigation } from "lucide-react";
-import { mapUrl } from "@/data/siteContent";
+import { DIRECTIONS_URL } from "@/data/siteContent";
+import { ContactLines } from "@/components/ContactLines";
 
 const ORDER = ["crescent", "pharmasave", "physio"];
 
@@ -45,8 +46,10 @@ export const ContactStrip = ({ brands }) => {
               </span>
             </a>
 
+            <ContactLines lines={brand.extraPhones} className="-mt-2 pl-12" />
+
             <a
-              href={mapUrl(brand.address)}
+              href={DIRECTIONS_URL}
               target="_blank"
               rel="noopener noreferrer"
               data-testid={`contact-directions-${brand.key}`}

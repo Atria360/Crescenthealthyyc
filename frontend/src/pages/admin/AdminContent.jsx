@@ -101,6 +101,7 @@ function clean(data) {
     b.intro = (b.intro || []).filter((x) => x && x.trim());
     b.serviceDetails = (b.serviceDetails || []).filter((s) => s.name || s.desc);
     b.faq = (b.faq || []).filter((f) => f.q || f.a);
+    b.extraPhones = (b.extraPhones || []).filter((p) => p.number && p.number.trim());
   });
   d.faq = (d.faq || []).filter((f) => f.q || f.a);
   d.testimonials = (d.testimonials || []).filter((t) => t.text || t.name);
@@ -199,7 +200,7 @@ export default function AdminContent() {
                   <Field label="Service type" value={b.serviceType} onChange={(v) => set((d) => (d.brands[bi].serviceType = v))} />
                   <Color label="Accent color" value={b.accent} onChange={(v) => set((d) => (d.brands[bi].accent = v))} />
                   <Field label="Phone (display)" value={b.phone} onChange={(v) => set((d) => (d.brands[bi].phone = v))} />
-                  <Field label="Phone (raw, e.g. +14035550100)" value={b.phoneRaw} onChange={(v) => set((d) => (d.brands[bi].phoneRaw = v))} />
+                  <Field label="Phone (raw, e.g. +18253954309)" value={b.phoneRaw} onChange={(v) => set((d) => (d.brands[bi].phoneRaw = v))} />
                   <Field label="Primary button label" value={b.primaryLabel} onChange={(v) => set((d) => (d.brands[bi].primaryLabel = v))} />
                   <Field label="Booking link (primary button)" value={b.primaryHref} onChange={(v) => set((d) => (d.brands[bi].primaryHref = v))} />
                   <Field label="Website URL" value={b.website} onChange={(v) => set((d) => (d.brands[bi].website = v))} />
@@ -209,6 +210,13 @@ export default function AdminContent() {
                 </div>
                 <div className="mt-4 space-y-4">
                   <Field label="Address" value={b.address} onChange={(v) => set((d) => (d.brands[bi].address = v))} />
+                  <ObjectList
+                    label="Other phone lines (labels containing “fax” are not clickable)"
+                    items={b.extraPhones}
+                    onChange={(v) => set((d) => (d.brands[bi].extraPhones = v))}
+                    fields={[{ key: "label", label: "Label (e.g. Toll-free, Fax)" }, { key: "number", label: "Number" }]}
+                    testid={`brand-phones-${b.key}`}
+                  />
                   <Area label="One-liner" value={b.oneLiner} onChange={(v) => set((d) => (d.brands[bi].oneLiner = v))} rows={2} />
                   <Field label="Tagline (brand page hero)" value={b.tagline} onChange={(v) => set((d) => (d.brands[bi].tagline = v))} />
                   <LineList label="Badges" value={b.badges} onChange={(v) => set((d) => (d.brands[bi].badges = v))} rows={2} />
