@@ -21,6 +21,7 @@ import { LocationMap } from "@/components/LocationMap";
 import { useSite } from "@/context/ContentContext";
 import { ContactLines } from "@/components/ContactLines";
 import { DIRECTIONS_URL } from "@/data/siteContent";
+import { externalLinkProps } from "@/lib/utils";
 
 const HERO_BG = {
   pharmasave: "linear-gradient(155deg, #E01449 0%, #A50E36 100%)",
@@ -80,11 +81,14 @@ export default function BrandPage() {
             animate="show"
             className="max-w-3xl"
           >
-            <div className="mb-7 inline-flex rounded-2xl bg-white px-6 py-4 shadow-[0_10px_30px_rgba(0,0,0,0.18)]">
+            <div
+              data-testid={`brand-hero-logo-${brand.key}`}
+              className="mb-10 flex w-full max-w-[640px] items-center justify-center rounded-3xl bg-white px-8 py-8 shadow-[0_20px_50px_rgba(0,0,0,0.22)] md:px-12 md:py-10"
+            >
               <img
                 src={brand.logo}
                 alt={brand.name}
-                className="h-12 w-auto max-w-[210px] object-contain md:h-14"
+                className="h-auto max-h-28 w-full object-contain sm:max-h-36 md:max-h-44"
               />
             </div>
             <p className="text-[11px] font-bold uppercase tracking-[0.25em] text-white/75">
@@ -111,6 +115,7 @@ export default function BrandPage() {
             <div className="mt-9 flex flex-wrap items-center gap-3">
               <motion.a
                 href={brand.primaryHref}
+                {...externalLinkProps(brand.primaryHref)}
                 data-testid={`brand-primary-${brand.key}`}
                 whileHover={{ scale: 1.03 }}
                 whileTap={{ scale: 0.97 }}
@@ -377,6 +382,7 @@ export default function BrandPage() {
             <div className="relative z-10 mt-8 flex flex-wrap justify-center gap-3">
               <motion.a
                 href={brand.primaryHref}
+                {...externalLinkProps(brand.primaryHref)}
                 data-testid={`brand-cta-primary-${brand.key}`}
                 whileHover={{ scale: 1.03 }}
                 whileTap={{ scale: 0.97 }}

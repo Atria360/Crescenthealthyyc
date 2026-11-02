@@ -68,8 +68,8 @@ export const siteContent = {
         "Your neighbourhood pharmacy — prescriptions and everyday health.",
       badges: ["Free Local Rx Delivery"],
       hours: [
-        "Mon–Fri · 9:30 AM – 6:00 PM",
-        "Sat · 10:00 AM – 4:00 PM",
+        "Mon–Fri · 9:00 AM – 5:00 PM",
+        "Sat · 10:00 AM – 3:00 PM",
         "Sun · Closed",
       ],
       address: "150-909 5 Avenue SW, Calgary, AB",
@@ -112,8 +112,8 @@ export const siteContent = {
         "Family physicians providing comprehensive, compassionate care in downtown Calgary.",
       badges: ["Accepting New Patients", "Walk-Ins Welcome"],
       hours: [
-        "Mon–Fri · 8:30 AM – 5:00 PM",
-        "Sat · By Appointment",
+        "Mon–Fri · 9:00 AM – 5:00 PM",
+        "Sat · 10:00 AM – 3:00 PM",
         "Sun · Closed",
       ],
       address: "150-909 5 Avenue SW, Calgary, AB",
@@ -124,7 +124,7 @@ export const siteContent = {
         { label: "Fax", number: "825-395-4400" },
       ],
       primaryLabel: "Book Appointment",
-      primaryHref: "#",
+      primaryHref: "https://patient.medeohealth.com/booking/crescent-medical-centre-downtown",
       website: "https://crescentmedical.ca",
       websiteLabel: "Visit Crescent website",
       services: [
@@ -155,8 +155,8 @@ export const siteContent = {
         "Modern physiotherapy and wellness care to get you moving, pain-free.",
       badges: ["Direct Billing Available", "No Referral Needed"],
       hours: [
-        "Mon–Fri · 7:00 AM – 7:00 PM",
-        "Sat · 9:00 AM – 2:00 PM",
+        "Mon–Fri · 9:00 AM – 5:00 PM",
+        "Sat · 10:00 AM – 3:00 PM",
         "Sun · Closed",
       ],
       address: "150-909 5 Avenue SW, Calgary, AB",
@@ -167,7 +167,7 @@ export const siteContent = {
         { label: "Fax", number: "825-395-4400" },
       ],
       primaryLabel: "Book Now",
-      primaryHref: "#",
+      primaryHref: "https://physiostudiohealth.janeapp.com/locations/the-physio-studio-downtown/book",
       website: "https://physiostudiohealth.ca",
       websiteLabel: "Visit The Physio Studio website",
       services: [

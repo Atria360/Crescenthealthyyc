@@ -2,6 +2,7 @@ import { useState } from "react";
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
 import { Phone, ArrowRight, ArrowUpRight, Clock, MapPin, Globe } from "lucide-react";
+import { externalLinkProps } from "@/lib/utils";
 
 const META = {
   crescent: {
@@ -131,6 +132,7 @@ export const BrandSplitHero = ({ brands, hero }) => {
                 <div className="mt-1 flex flex-col items-center gap-3">
                   <motion.a
                     href={brand.primaryHref}
+                    {...externalLinkProps(brand.primaryHref)}
                     data-testid={`panel-primary-${brand.key}`}
                     whileHover={{ scale: 1.03 }}
                     whileTap={{ scale: 0.97 }}
